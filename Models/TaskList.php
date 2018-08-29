@@ -17,6 +17,6 @@ class TaskList {
 
   public function getAll()
   {
-    return $this->db->query('SELECT * FROM tasklist');
+    return $this->db->read('SELECT * FROM tasklist');
   }
 }

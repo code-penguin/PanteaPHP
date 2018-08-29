@@ -42,7 +42,19 @@ class Database {
       $this->connect();
     }
 
-    $res = $this->connection->query($query);
+    return $this->connection->query($query);
+  }
+
+  /**
+   * Execute a query on the database and return the result as an associative array.
+   *
+   * @param string $query
+   * @return mixed
+   * @throws \Exception
+   */
+  public function read(string $query)
+  {
+    $res = $this->query($query);
     return (!$res) ? $res : $res->fetch_all(MYSQLI_ASSOC);
   }
 }
