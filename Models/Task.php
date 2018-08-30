@@ -25,4 +25,8 @@ class Task {
       $query = "DELETE FROM task WHERE id=$id";
       $this->db->query($query);
     }
+
+    public function allForList ($id) {
+      return $this->db->read("SELECT * FROM task WHERE list_id=$id");
+    }
 }

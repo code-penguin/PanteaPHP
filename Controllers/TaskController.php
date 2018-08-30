@@ -23,4 +23,11 @@ class TaskController
   public function delete() {
     $this->task->delete($_REQUEST['id']);
   }
+
+  public function getAllForList() {
+    $tasks = $this->task->allForList($_REQUEST['id']);
+
+    header('Content-type: application/json');
+    echo json_encode($tasks);
+  }
 }
