@@ -5,5 +5,6 @@ return [
   '/list' => 'ViewController@viewTasklist',
   '/list/add' => 'ViewController@addTasklist',
   '/task/add' => 'ViewController@addTask',
-  '/api/tasklists' => 'TaskListController@getAll'
+  '/api/tasklists' => 'TaskListController@getAll',
+  '/api/task/add' => 'TaskController@add'
 ];
