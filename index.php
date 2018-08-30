@@ -19,10 +19,12 @@ spl_autoload_register(function ($classPath) {
   }
 });
 
+$uri = str_replace('/PanteaPHP', '', $_SERVER['REQUEST_URI']);
+
 // Initialize the router and parse the URI. When an error occurs, show it to the visitor.
 $router = new Router();
 try {
-  $router->parse($_SERVER['REQUEST_URI']);
+  $router->parse($uri);
 }
 catch (\Exception $error) {
   var_dump($error->getMessage());
