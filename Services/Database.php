@@ -42,7 +42,13 @@ class Database {
       $this->connect();
     }
 
-    return $this->connection->query($query);
+    $result = $this->connection->query($query);
+
+    if (!$result) {
+        throw new \Exception($this->connection->error);
+    }
+
+    return $result;
   }
 
   /**
