@@ -22,4 +22,8 @@ class TaskListController {
     header('Content-type: application/json');
     echo json_encode($lists);
   }
+
+  public function add() {
+    $this->list->add($_REQUEST['title'], $_REQUEST['description']);
+  }
 }
