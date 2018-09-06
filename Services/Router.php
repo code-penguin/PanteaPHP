@@ -12,7 +12,7 @@ class Router {
   private static $routes;
 
   public static function add ($type, $path, $callable) {
-    self::$routes[$path] = $callable;
+    self::$routes[$type . ':' . $path] = $callable;
   }
 
   /**
@@ -33,10 +33,13 @@ class Router {
       parse_url($fullUri, PHP_URL_PATH)
     );
 
-    if (!isset(self::$routes[$uri])) {
-      $uri = '/';
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    if (!isset(self::$routes[$method . ':' . $uri])) {
+      throw new \Exception('Invalid route: ' . $method . ' ' . $uri);
     }
-    $this->loadRoute(self::$routes[$uri]);
+
+    $this->loadRoute(self::$routes[$method . ':' . $uri]);
   }
 
   /**
