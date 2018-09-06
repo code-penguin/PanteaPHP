@@ -9,13 +9,17 @@ namespace Services;
  * Handles routing for the application.
  */
 class Router {
-  private $routes;
+  private static $routes;
+
+  public static function add ($type, $path, $callable) {
+    self::$routes[$path] = $callable;
+  }
 
   /**
    * Load the routes file.
    */
   public function __construct () {
-    $this->routes = require_once 'routes.php';
+    require_once 'routes.php';
   }
 
   /**
@@ -29,10 +33,10 @@ class Router {
       parse_url($fullUri, PHP_URL_PATH)
     );
 
-    if (!isset($this->routes[$uri])) {
+    if (!isset(self::$routes[$uri])) {
       $uri = '/';
     }
-    $this->loadRoute($this->routes[$uri]);
+    $this->loadRoute(self::$routes[$uri]);
   }
 
   /**

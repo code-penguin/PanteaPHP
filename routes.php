@@ -1,16 +1,16 @@
 <?php
 
-return [
-  // Forms application
-  '/' => 'ViewController@listTasklist',
-  '/list' => 'ViewController@viewTasklist',
-  '/list/add' => 'ViewController@addTasklist',
-  '/task/add' => 'ViewController@addTask',
+use Services\Router;
 
-  // API
-  '/api/tasklists' => 'TaskListController@getAll',
-  '/api/tasklist/add' => 'TaskListController@add',
-  '/api/tasks' => 'TaskController@getAllForList',
-  '/api/task/add' => 'TaskController@add',
-  '/api/task/delete' => 'TaskController@delete'
-];
+// Forms application
+Router::add('GET', '/', 'ViewController@listTasklist');
+Router::add('GET', '/list', 'ViewController@viewTasklist');
+Router::add('GET', '/list/add', 'ViewController@addTasklist');
+Router::add('GET', '/task/add', 'ViewController@addTask');
+
+// API
+Router::add('GET', '/api/tasklists', 'TaskListController@getAll');
+Router::add('GET', '/api/tasklist/add', 'TaskListController@add');
+Router::add('GET', '/api/tasks', 'TaskController@getAllForList');
+Router::add('GET', '/api/task/add', 'TaskController@add');
+Router::add('GET', '/api/task/delete', 'TaskController@delete');
