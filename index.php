@@ -27,5 +27,5 @@ try {
   $router->parse($uri);
 }
 catch (\Exception $error) {
-  var_dump($error->getMessage());
+  var_dump($error->getMessage() . ' in file ' . $error->getFile() . ' on line ' . $error->getLine());
 }
